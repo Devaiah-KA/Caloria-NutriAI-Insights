@@ -39,7 +39,7 @@ def input_image_setup(uploaded_file):
  
 st.set_page_config(page_title="AI Calorie Doctor")
 st.header("Gemini Health App")
-input=st.text_input("Portion size: ",key="input")
+input=st.text_input("Food Info(If required): ",key="input")
 uploaded_file = st.file_uploader("Choose image...",type=["jpeg","jpg","png"])
 image=""
 if uploaded_file is not None:
@@ -51,14 +51,11 @@ submit=st.button("Tell me about the total calories")
 #prompt setup
 
 prompt = """
-the total size of food is given in grams ={input}
- The individual items should sum up to the total size given by the user.Hence spilt the items
- according to their portion from the image and calculate for them individually.
- 
+The information about the food is given in the input.
 You are an expert in nutritionist where you need to see the food items from the image
- and calculate the calories according to the grams,
-
- 
+ and calculate the calories according to the grams.
+The individual items should sum up to the total size of the food.Hence spilt the items
+ according to their portion from the image and calculate for them individually.
  Also provide the details of each item with calories in below in a table format
 
                1. Item 1 - no of calories and grams
@@ -66,9 +63,8 @@ You are an expert in nutritionist where you need to see the food items from the 
                ----
                ----
 
-        
 Finally you can mention whether the food is healthy or not and also mention the percentage split of the ratio of protien,
-carbohydrates(of which sugar also),fats,fibres,etc  in a tabular format 
+carbohydrates(of which sugar also),fats,fibres,etc  in a concise manner.
     
 """
 
